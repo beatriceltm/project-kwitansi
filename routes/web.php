@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KuitansiController;
 use App\Http\Middleware\EnsureTeamMembership;
 use Illuminate\Support\Facades\Route;
 
@@ -13,20 +14,23 @@ Route::prefix('{current_team}')
     ])
     ->group(function () {
 
-        // Dashboard
         Route::view('dashboard', 'dashboard')
             ->name('dashboard');
 
-        // Halaman tambah transaksi
         Route::livewire(
             'transaksi/create',
             'pages::transaksi.create'
         )->name('transaksi.create');
-        
-Route::livewire(
-    'transaksi',
-    'pages::transaksi.index'
-)->name('transaksi.index');
+
+        Route::livewire(
+            'transaksi',
+            'pages::transaksi.index'
+        )->name('transaksi.index');
+
+        Route::get(
+            'transaksi/{transaksi}/kuitansi',
+            [KuitansiController::class, 'show']
+        )->name('transaksi.kuitansi');
 
     });
 
