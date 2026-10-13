@@ -14,10 +14,37 @@
 
             <flux:sidebar.nav>
                 <flux:sidebar.group :heading="__('Platform')" class="grid">
-                    <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard') }}
-                    </flux:sidebar.item>
-                </flux:sidebar.group>
+                     {{-- Menu Dashboard --}}
+    <flux:sidebar.item
+        icon="home"
+        :href="route('dashboard')"
+        :current="request()->routeIs('dashboard')"
+        wire:navigate
+    >
+        {{ __('Dashboard') }}
+    </flux:sidebar.item>
+
+    {{-- Menu Daftar Transaksi --}}
+    <flux:sidebar.item
+        icon="list-bullet"
+        :href="route('transaksi.index')"
+        :current="request()->routeIs('transaksi.index')"
+        wire:navigate
+    >
+        {{ __('Daftar Transaksi') }}
+    </flux:sidebar.item>
+
+    {{-- Menu Tambah Transaksi --}}
+    <flux:sidebar.item
+        icon="plus-circle"
+        :href="route('transaksi.create')"
+        :current="request()->routeIs('transaksi.create')"
+        wire:navigate
+    >
+        {{ __('Tambah Transaksi') }}
+    </flux:sidebar.item>
+
+</flux:sidebar.group>
             </flux:sidebar.nav>
 
             <flux:spacer />
