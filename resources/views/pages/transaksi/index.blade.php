@@ -119,6 +119,7 @@ new class extends Component
                     <th class="p-3">Nominal</th>
                     <th class="p-3">Metode</th>
                     <th class="p-3">Status</th>
+                    <th class="p-3">Aksi</th>
                 </tr>
             </thead>
 
@@ -158,19 +159,26 @@ new class extends Component
                         </td>
 
                         <td class="p-3">
-                            @if($transaksi->status === 'lunas')
-
-                                <span class="rounded bg-green-100 px-3 py-1 text-green-800">
-                                    Lunas
-                                </span>
-
-                            @else
-
-                                <span class="rounded bg-yellow-100 px-3 py-1 text-yellow-800">
-                                    Belum Lunas
-                                </span>
-
-                            @endif
+                            @if(
+        $transaksi->status === 'lunas'
+        && $transaksi->nomor_kuitansi
+    )
+        <a
+            href="{{ route('transaksi.kuitansi', [
+                'current_team' => $teamSlug,
+                'transaksi' => $transaksi->id
+            ]) }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded bg-blue-600 px-3 py-2 text-white"
+        >
+            Cetak Kuitansi
+        </a>
+    @else
+        <span class="text-gray-400">
+            Belum tersedia
+        </span>
+    @endif
                         </td>
 
                     </tr>
@@ -178,7 +186,7 @@ new class extends Component
                 @empty
 
                     <tr>
-                        <td colspan="7"
+                        <td colspan="8"
                             class="p-6 text-center text-gray-500">
                             Belum ada transaksi.
                         </td>
