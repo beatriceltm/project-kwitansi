@@ -22,6 +22,11 @@ Route::prefix('{current_team}')
             'transaksi/create',
             'pages::transaksi.create'
         )->name('transaksi.create');
+        
+Route::livewire(
+    'transaksi',
+    'pages::transaksi.index'
+)->name('transaksi.index');
 
     });
 
